@@ -43,7 +43,12 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: true
         }
-    }]
+    }],
+    role: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Role'
+    }
 },{
     // POUR POUVOIR UTILISER UN timestamp il faut que ce soit dans un Schema
     timestamps: true

@@ -9,9 +9,6 @@ const User = require('../src/models/user');
 
 
 const app = express()
-User.deleteMany().then(() => {
-    setupDatabase();
-})
 // app.use((req, res, next) => {
 //     res.status(503).send('The website is in maintenance')
 // })

@@ -4,7 +4,7 @@ const User = require('../models/user');
 const { setupDatabase } = require('../../tests/fixtures/db')
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/esgi-tdd-project-test', {
+mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
