@@ -18,8 +18,27 @@
 **when** User use the api with the route /users with a post request
 **then** I should see a response 400
 
-
 **Scenario 3:** an invalid parameter is passed to the request
 **Given that** the user give a non valid parameter
 **when** User use the api with the route /users with a post request
 **then** I should see a response 200 ( the parameter has to be ignored )
+
+**Scenario 4:** an invalid email
+**Given that** the user give a non valid email
+**when** User use the api with the route /users with a post request
+**then** I should see a response 400
+
+**Scenario 5:** an invalid role
+**Given that** the user give a non valid object_id of a role that is not invite role
+**when** User use the api with the route /users with a post request
+**then** I should see a response 400
+
+**Scenario 6:** an existing user 
+**Given that** the user give an email that is already existing in the database
+**when** User use the api with the route /users with a post request
+**then** I should see a response 400
+
+**Scenario 7:** the databse is not disponible
+**Given that** the user give a non valid object_id of a role that is not invite role
+**when** User use the api with the route /users with a post request
+**then** I should see a response 400
