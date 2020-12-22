@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     }],
-    role: {
+    id_role: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Role'

@@ -13,7 +13,7 @@ const user_admin = {
     tokens: [{
         token: jwt.sign({ _id: user_admin_id}, process.env.JWT_SECRET)
     }],
-    role: role_administrator._id
+    id_role: role_administrator._id
 }
 
 const user_editor_id = new mongoose.Types.ObjectId()
@@ -25,7 +25,7 @@ const user_editor = {
     tokens: [{
         token: jwt.sign({ _id: user_editor_id }, process.env.JWT_SECRET)
     }],
-    role: role_editor._id
+    id_role: role_editor._id
 }
 
 const user_invite_id = new mongoose.Types.ObjectId()
@@ -37,12 +37,11 @@ const user_invite = {
     tokens: [{
         token: jwt.sign({ _id: user_invite_id }, process.env.JWT_SECRET)
     }],
-    role: role_invite._id
+    id_role: role_invite._id
 }
 
 const setupDatabase = async () => {
     try {
-        console.log(process.env.MONGODB_URL)
         await Role.deleteMany()
         await new Role(role_administrator).save()
         await new Role(role_editor).save()

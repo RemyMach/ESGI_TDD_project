@@ -11,13 +11,36 @@ const { role_administrator, role_editor, role_invite } = require('./fixtures/rol
 beforeEach(setupDatabase);
 
 
-describe('Test series for models/User.js', () => {
-   
-    describe('Test the userSchema.js', () => {
-        test('Test d\'ajout d\'un utilisateur', () => {
-            const result = 6;
-            expect(result).toEqual(6);
+describe('Test series User routes', () => {
+
+    describe('Test the creation of a User', () => {
+        
+        it('Test the creation of a User with valid parameters', async () => {
+            const response = await request(app).post('/users').send({
+                name: 'Andrew',
+                email: 'andrew@example.com',
+                password: 'MyPass777!',
+                id_role: role_invite._id
+            }).expect(201)
+        })
+
+        it('Test the creation of a User with a missing required parameter', async () => {
+            const response = await request(app).post('/users').send({
+                name: 'Andrew',
+                password: 'MyPass777!',
+                id_role: role_invite._id
+            }).expect(400)
+        })
+
+        it('Test the creation of a User with a parameter that doesn\'t exist in the Schema', async () => {
+            const response = await request(app).post('/users').send({
+                name: 'Andrew',
+                email: 'andrew@example.com',
+                password: 'MyPass777!',
+                adresse: 'a street',
+                age: 12,
+                id_role: role_invite._id
+            }).expect(201)
         })
     });
-
 });
