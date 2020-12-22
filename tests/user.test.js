@@ -14,7 +14,7 @@ beforeEach(setupDatabase);
 describe('Test series User routes', () => {
 
     describe('Test the creation of a User', () => {
-        
+
         it('Test the creation of a User with valid parameters', async () => {
             const response = await request(app).post('/users').send({
                 name: 'Andrew',
@@ -41,6 +41,36 @@ describe('Test series User routes', () => {
                 age: 12,
                 id_role: role_invite._id
             }).expect(201)
+        })
+
+        it('Test the creation of a User with a non valid email', async () => {
+            const response = await request(app).post('/users').send({
+                name: 'Andrew',
+                email: 'andrewPomme.com',
+                password: 'MyPass777!',
+                age: 12,
+                id_role: role_invite._id
+            }).expect(400)
+        })
+
+        it('Test the creation of a User with a non valid role', async () => {
+            const response = await request(app).post('/users').send({
+                name: 'Andrew',
+                email: 'andrew@example.com',
+                password: 'MyPass777!',
+                age: 12,
+                id_role: role_editor._id
+            }).expect(400)
+        })
+
+        it('Test the creation of a User with a User already exiting in the mongodb databse', async () => {
+            const response = await request(app).post('/users').send({
+                name: 'Andrew',
+                email: 'pomme@example.com',
+                password: 'MyPass777!',
+                age: 12,
+                id_role: role_invite._id
+            }).expect(400)
         })
     });
 });
