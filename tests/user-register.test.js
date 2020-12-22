@@ -20,7 +20,6 @@ describe('Test series User routes', () => {
                 name: 'Andrew',
                 email: 'andrew@example.com',
                 password: 'MyPass777!',
-                id_role: role_invite._id
             }).expect(201)
         })
 
@@ -28,7 +27,6 @@ describe('Test series User routes', () => {
             const response = await request(app).post('/users').send({
                 name: 'Andrew',
                 password: 'MyPass777!',
-                id_role: role_invite._id
             }).expect(400)
         })
 
@@ -39,7 +37,6 @@ describe('Test series User routes', () => {
                 password: 'MyPass777!',
                 adresse: 'a street',
                 age: 12,
-                id_role: role_invite._id
             }).expect(201)
         })
 
@@ -49,11 +46,10 @@ describe('Test series User routes', () => {
                 email: 'andrewPomme.com',
                 password: 'MyPass777!',
                 age: 12,
-                id_role: role_invite._id
             }).expect(400)
         })
 
-        it('Test the creation of a User with a non valid role', async () => {
+        it('Test the creation of a User with a role that you can\'t past in the parameters', async () => {
             const response = await request(app).post('/users').send({
                 name: 'Andrew',
                 email: 'andrew@example.com',
@@ -69,7 +65,6 @@ describe('Test series User routes', () => {
                 email: 'pomme@example.com',
                 password: 'MyPass777!',
                 age: 12,
-                id_role: role_invite._id
             }).expect(400)
         })
     });
