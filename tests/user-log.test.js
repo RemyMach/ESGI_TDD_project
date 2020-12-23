@@ -52,4 +52,24 @@ describe('Test series User routes', () => {
             }).expect(400)
         })
     });
+
+
+    describe('Test the logout of a User', () => {
+        
+        it('Test The user give the good auth token to disconnect', async () => {
+            const response = await request(app)
+                .get('/users/me')
+                .set('Authorization', `Bearer ${user_invite.tokens[0].token}`)
+                .send()
+                .expect(200)
+        })
+
+        it('The token doesn\'t exist', async () => {
+            const response = await request(app)
+                .get('/users/me')
+                .set('Authorization', `Bearer 73899EU839E9`)
+                .send()
+                .expect(401)
+        })
+    });
 });
