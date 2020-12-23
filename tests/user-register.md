@@ -11,7 +11,7 @@
 **Scenario 1:** The parameters are the good one with the good format and the route to.
 **Given that** the user give the good parameters to the api route
 **when** User use the api with the route /users avec une requete Post
-**then** I should see a response 200
+**then** I should see a response 201, the user is correctly register in the database, the response match the format expected ans the password is hash in the database
 
 **Scenario 2:** a parameter required is missing
 **Given that** the user forget a parameter to the route.
@@ -21,7 +21,7 @@
 **Scenario 3:** an invalid parameter is passed to the request
 **Given that** the user give a non valid parameter
 **when** User use the api with the route /users with a post request
-**then** I should see a response 200 ( the parameter has to be ignored )
+**then** I should see a response 201 ( the parameter has to be ignored ), the user is correctly register in the database, the response match the format expected ans the password is hash in the database
 
 **Scenario 4:** an invalid email
 **Given that** the user give a non valid email
@@ -38,7 +38,7 @@
 **when** User use the api with the route /users with a post request
 **then** I should see a response 400
 
-**Scenario 6:** a user with a negative age 
+**Scenario 7:** a user with a negative age 
 **Given that** the user give an age that is negative
 **when** User use the api with the route /users with a post request
 **then** I should see a response 400

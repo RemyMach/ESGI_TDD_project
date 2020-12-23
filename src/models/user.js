@@ -80,6 +80,31 @@ userSchema.methods.toJSON = function() {
     return userObject
 }
 
+userSchema.statics.findByCredentials = async (email, password) => {
+    const user = await User.findOne({ email })
+    if (!user) {
+        throw new Error('Unable to login')
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password)
+    if(!isMatch) {
+        throw new Error('Unable to login')
+    }
+
+    return user
+}
+
+userSchema.pre('save', async function (next) {
+    // on récupère le user avant qu'il soit créé
+    const user = this
+
+    if(user.isModified('password')) {
+        user.password = await bcrypt.hash(user.password, 8)
+    }
+
+    next()
+})
+
 // On définit le modèle User
 const User = mongoose.model('User', userSchema)
 

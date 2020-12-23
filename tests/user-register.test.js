@@ -21,6 +21,22 @@ describe('Test series User routes', () => {
                 email: 'andrew@example.com',
                 password: 'MyPass777!',
             }).expect(201)
+
+            // On regarde que la db change correctement
+            const user = await User.findById(response.body.user._id)
+            expect(user).not.toBeNull()
+
+            // on regarde que la réponse contient bien les éléments attendu
+            expect(response.body).toMatchObject({
+                user: { 
+                    name: 'andrew',
+                    email: 'andrew@example.com',
+                    age: 0
+                }
+            })
+
+            // on vérifie que le password est bien hashé
+            expect(user.password).not.toBe('MyPass777!')
         })
 
         it('Test the creation of a User with a missing required parameter', async () => {
@@ -38,6 +54,22 @@ describe('Test series User routes', () => {
                 adresse: 'a street',
                 age: 12,
             }).expect(201)
+
+            // On regarde que la db change correctement
+            const user = await User.findById(response.body.user._id)
+            expect(user).not.toBeNull()
+
+            // on regarde que la réponse contient bien les éléments attendu
+            expect(response.body).toMatchObject({
+                user: { 
+                    name: 'andrew',
+                    email: 'andrew@example.com',
+                    age: 12
+                }
+            })
+
+            // on vérifie que le password est bien hashé
+            expect(user.password).not.toBe('MyPass777!')
         })
 
         it('Test the creation of a User with a non valid email', async () => {
