@@ -4,6 +4,7 @@ const router = new express.Router()
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const { role_administrator, role_editor, role_invite } = require('../../tests/fixtures/role')
+const auth = require('../middleware/auth')
 
 
 router.post('/users', async (req, res) => {
@@ -32,7 +33,7 @@ router.post('/users/login', async (req, res) => {
     }
 })
 
-router.get('/users/me', async (req, res) => {
+router.get('/users/me', auth, async (req, res) => {
     res.send(req.user)
 })
 
