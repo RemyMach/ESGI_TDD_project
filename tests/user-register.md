@@ -1,4 +1,4 @@
-# User Routes
+# BDD User Register routes
 
 ## User register
 
@@ -38,7 +38,7 @@
 **when** User use the api with the route /users with a post request
 **then** I should see a response 400
 
-**Scenario 7:** the databse is not disponible
-**Given that** the user give a non valid object_id of a role that is not invite role
+**Scenario 6:** a user with a negative age 
+**Given that** the user give an age that is negative
 **when** User use the api with the route /users with a post request
 **then** I should see a response 400

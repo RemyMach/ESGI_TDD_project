@@ -41,19 +41,15 @@ const user_invite = {
 }
 
 const setupDatabase = async () => {
-    try {
-        await Role.deleteMany()
-        await new Role(role_administrator).save()
-        await new Role(role_editor).save()
-        await new Role(role_invite).save()
+    await Role.deleteMany()
+    await new Role(role_administrator).save()
+    await new Role(role_editor).save()
+    await new Role(role_invite).save()
 
-        await User.deleteMany()
-        await new User(user_admin).save()
-        await new User(user_editor).save()
-        await new User(user_invite).save()
-    }catch(e) {
-        console.log(e);
-    }
+    await User.deleteMany()
+    await new User(user_admin).save()
+    await new User(user_editor).save()
+    await new User(user_invite).save()
 }
 
 module.exports = {

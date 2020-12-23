@@ -67,5 +67,14 @@ describe('Test series User routes', () => {
                 age: 12,
             }).expect(400)
         })
+
+        it('Test the creation of a User with a negative age ', async () => {
+            const response = await request(app).post('/users').send({
+                name: 'Andrew',
+                email: 'andrew@example.com',
+                password: 'MyPass777!',
+                age: -1,
+            }).expect(400)
+        })
     });
 });
