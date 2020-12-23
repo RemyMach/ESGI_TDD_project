@@ -4,7 +4,7 @@ const router = new express.Router()
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const { role_administrator, role_editor, role_invite } = require('../../tests/fixtures/role')
-const auth = require('../middleware/auth')
+const { auth, auth_editor_administrator } = require('../middleware/auth')
 
 
 router.post('/users', async (req, res) => {
@@ -41,15 +41,23 @@ router.get('/users/me', auth, async (req, res) => {
 router.post('/users/logout', auth, async (req, res) => {
     // copie dans req.user.tokens tous les tokens qui ne sont pas égau à req.token
     // permet d'avoir tous les token dans req.user.tokens sauf le valide
-    try{
-        req.user.tokens = req.user.tokens.filter((token) => {
-            return token.token !== req.token
-        })
-        //console.log(req.user, req.token)
-        await req.user.save()
-        res.status(200).send()
-    }catch(e) {
-        res.status(400).send()
+    req.user.tokens = req.user.tokens.filter((token) => {
+        return token.token !== req.token
+    })
+    //console.log(req.user, req.token)
+    await req.user.save()
+    res.status(200).send()
+})
+
+router.post('/users/admin/create', auth_editor_administrator, async (req, res) => {
+
+    const user = new User(req.body)
+    try {
+        await user.save()
+        const token = await user.generateAuthToken()
+        res.status(201).send({user, token})
+    } catch (e) {
+        res.status(400).send(e)
     }
 })
 
