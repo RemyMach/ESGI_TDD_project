@@ -42,3 +42,8 @@
 **Given that** the user give an age that is negative
 **when** User use the api with the route /users with a post request
 **then** I should see a response 400
+
+**Scenario 8** The password is less than 7 characters
+**Given that** the user give a non valid size of password, less thant 7 characters
+**when** User use the api with the route /users/password avec une requete Patch
+**then** I should see a response 400

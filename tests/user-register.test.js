@@ -108,5 +108,14 @@ describe('Test series User routes', () => {
                 age: -1,
             }).expect(400)
         })
+
+        it('Test the creation of a User with a password is less than 7 characters ', async () => {
+            const response = await request(app).post('/users').send({
+                name: 'Andrew',
+                email: 'andrew@example.com',
+                password: 'pomme',
+                age: 10,
+            }).expect(400)
+        })
     });
 });

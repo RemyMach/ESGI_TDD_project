@@ -1,6 +1,6 @@
 # BDD User admin routes
 
-## User admin
+## User admin create
 
 **Title:** User create.  
 
@@ -48,6 +48,7 @@
 **when** User use the api with the route /users with a post request
 **then** I should see a response 400
 
+## User admin delete
 
 **Title:** User delete.  
 

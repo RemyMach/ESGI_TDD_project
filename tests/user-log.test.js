@@ -55,10 +55,10 @@ describe('Test series User routes', () => {
 
 
     describe('Test the logout of a User', () => {
-        
+
         it('Test The user give the good auth token to disconnect', async () => {
             const response = await request(app)
-                .get('/users/me')
+                .get('/users/logout')
                 .set('Authorization', `Bearer ${user_invite.tokens[0].token}`)
                 .send()
                 .expect(200)
@@ -66,7 +66,7 @@ describe('Test series User routes', () => {
 
         it('The token doesn\'t exist', async () => {
             const response = await request(app)
-                .get('/users/me')
+                .get('/users/logout')
                 .set('Authorization', `Bearer 73899EU839E9`)
                 .send()
                 .expect(401)
