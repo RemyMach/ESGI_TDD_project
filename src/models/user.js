@@ -58,7 +58,7 @@ const userSchema = new mongoose.Schema({
 // la collection User comme avec la méthode findByCredentials
 userSchema.methods.generateAuthToken = async function () {
     const user = this
-    const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET)
+    const token = jwt.sign({ _id: user._id.toString(), iat: Math.floor(Date.now() / 1000) - 30 }, process.env.JWT_SECRET)
     // user.tokens est alors un tableau
     // avec concat j'ajout token: valuetoken dans le tableau
     // l'_id se rajoute automatiquement, c'est l'id du token et pas du user 

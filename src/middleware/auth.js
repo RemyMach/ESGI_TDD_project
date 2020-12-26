@@ -18,7 +18,7 @@ const auth = async (req, res, next) => {
     }
 }
 
-const auth_editor_administrator = async (req, res, next) => {
+const auth_administrator = async (req, res, next) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '')
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
@@ -40,5 +40,5 @@ const auth_editor_administrator = async (req, res, next) => {
 
 module.exports = {
     auth,
-    auth_editor_administrator
+    auth_administrator
 }
