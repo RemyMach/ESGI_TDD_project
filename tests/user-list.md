@@ -13,7 +13,12 @@
 **when** User use the api with the route /users/me with a get request
 **then** I should see a response 200 and response body that contain User information
 
-**Scenario 2:** The token are not the good one
-**Given that** the user has not the good Authorization token
+**Scenario 2:** The token is not a valid token
+**Given that** the user has not a valid Authorization token
 **when** User use the api with the route /users/me with a get request
-**then** I should see a response 400
+**then** I should see a response 401
+
+**Scenario 3:** No token is provide
+**Given that** the user has not provide a token in the header of the request
+**when** User use the api with the route /users/me with a get request
+**then** I should see a response 401

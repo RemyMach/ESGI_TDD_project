@@ -28,8 +28,13 @@
 **when** User use the api with the route /users/login with a Post request
 **then** I should see a response 200 and in the mongodb the first user token has to be the same than the token in the response body
 
-**Scenario 5:** a parameter is missing in the route
+**Scenario 5:** the parameter password is missing
 **Given that** the user forget the password
+**when** User use the api with the route /users/login with a Post request
+**then** I should see a response 400
+
+**Scenario 6:** the parameter email is missing
+**Given that** the user forget the email
 **when** User use the api with the route /users/login with a Post request
 **then** I should see a response 400
 
@@ -42,10 +47,15 @@
 
 **Scenario 1:** The user give the good auth token to disconnect
 **Given that** the user give the auth token to logout
-**when**  User use the api with the route /users/logout with a Post request
+**when**  User use the api with the route /users/logout with a Get request
 **then** I should see a response 200
 
-**Scenario 1:** The token doesn't exist
+**Scenario 2:** The token doesn't exist
 **Given that** the user give a wrong auth token to logout
-**when**  User use the api with the route /users/logout with a Post request
-**then** I should see a response 400
+**when**  User use the api with the route /users/logout with a Get request
+**then** I should see a response 401
+
+**Scenario 3:**
+**Given that** the user give no token to logout
+**when**  User use the api with the route /users/logout with a Get request
+**then** I should see a response 401

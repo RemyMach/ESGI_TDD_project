@@ -48,13 +48,18 @@
 **when** User use the api with the route /users/admin/create with a Post request
 **then** I should see a response 400
 
+**Scenario 9:** The parameters are the good one with the good format and the route to and the role is editor
+**Given that** the user use auth token with admin role and good parameters to create an other user with invite or editor role
+**when** User use the api with the route /users/admin/create with a Post request
+**then** I should see a response 201 the user is correctly register in the database, the response match the format expected ans the password is hash in the database
+
 ## User admin delete
 
 **Title:** User delete.  
 
 **As an** admin api User,  
-**I want** to create an account for an other user
-**so that** The admin user is going to delete an invite account
+**I want** to delete an account of an existing editor or invite user
+**so that** The admin user is going to delete an invite or editor account
 
 **Scenario 1:** The parameters are the good one with the good format and the route to.
 **Given that** the admin user give the id of invite user or editor user to delete and his correct admin password
@@ -91,6 +96,11 @@
 **when** User use the api with the route /users/admin/delete/ with a delete request
 **then** I should see a response 400
 
+**Scenario 8:** The id user to be deleted is an editor
+**Given that** the admin user give the id of editor user to delete and his valid admin password
+**when** User use the api with the route /users/admin/delete/ with a delete request
+**then** I should see a response 200, the user is delete, and the user is not anymore present in the database
+
 ## User admin update Role
 
 **Title:** User update Role  
@@ -124,12 +134,12 @@
 **when** User use the api with the route /users/admin/update/role with a patch request
 **then** I should see a response 400
 
-**Scenario 6:** The id of the new Role is missing
+**Scenario 6:** The id of the new Role is missing in the parameters of the request
 **Given that** the admin user forget the id of the new Role
 **when** User use the api with the route /users/admin/update/role with a patch request
 **then** I should see a response 400
 
-**Scenario 7:** The id user to be deleted is missing
+**Scenario 7:** The id user to be update is missing in the parameters of the request
 **Given that** the admin user forget the id User that has to be deleted
-**when** User use the api with the route /users/admin/delete/ with a delete request
+**when** User use the api with the route /users/admin/update/role with a patch request
 **then** I should see a response 400
