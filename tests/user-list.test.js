@@ -27,11 +27,19 @@ describe('Test series User routes', () => {
             })
         })
 
-        test('Should get profile for user', async () => {
+        test('The token is not a valid token', async () => {
 
             const response = await request(app)
                 .get('/users/me')
                 .set('Authorization', `Bearer 73899EU839E9`)
+                .send()
+                .expect(401)
+        })
+
+        test('No token is not provide', async () => {
+
+            const response = await request(app)
+                .get('/users/me')
                 .send()
                 .expect(401)
         })
