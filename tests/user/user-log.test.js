@@ -1,9 +1,9 @@
-const User = require('../src/models/user')
+const User = require('../../src/models/user')
 const mongoose = require('mongoose');
 const request = require('supertest')
-const app = require('../src/app')
-const { user_admin, user_editor, user_invite, setupDatabase } = require('./fixtures/db')
-const { role_administrator, role_editor, role_invite } = require('./fixtures/role')
+const app = require('../../src/app')
+const { user_admin, user_editor, user_invite, setupDatabase } = require('../fixtures/db')
+const { role_administrator, role_editor, role_invite } = require('../fixtures/role')
 
 
 beforeEach(setupDatabase);
