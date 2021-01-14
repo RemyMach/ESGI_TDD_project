@@ -109,37 +109,57 @@
 **I want** to update the role of an existing user
 **so that** The admin user is going to update the roleof an existing user
 
-**Scenario 1:** The parameters are the good one with the good format and the route to.
+**Scenario 1:** The parameters are the good one with the good format and the route to for an invite user to editor role
 **Given that** the admin user give the id of invite user or editor user and the id of the new role
 **when** User use the api with the route /users/admin/update/role with a patch request
 **then** I should see a response 200 the user is modify, the User in the database has a new role
 
-**Scenario 2:** The admin password is not valid
+**Scenario 2:** The parameters are the good one with the good format and the route to for an editor user to admin role
+**Given that** the admin user give the id of invite user or editor user and the id of the new role
+**when** User use the api with the route /users/admin/update/role with a patch request
+**then** I should see a response 200 the user is modify, the User in the database has a new role
+
+**Scenario 3:** The admin password is not valid
 **Given that** the admin user give the id of invite user or editor user to delete but his admin password is invalid
 **when**  User use the api with the route /users/admin/update/role with a patch request
-**then** I should see a response 400
+**then** I should see a response 400, the role must not have changed in the database
 
-**Scenario 3:** the user to update role is not an editor or an invite
+**Scenario 4:** the user to update role is not an editor or an invite
 **Given that** the admin user give the id of a user that is not an invite or an editor
 **when** User use the api with the route /users/admin/update/role with a patch request
-**then** I should see a response 400
+**then** I should see a response 400, the role must not have changed in the database
 
-**Scenario 4:** The User that try to update role of an other user is not an admin
+**Scenario 5:** The User that try to update role of an other user is not an admin
 **Given that** the user use auth token but his role is not admin
 **when** User use the api with the route /users/admin/update/role with a patch request
 **then** I should see a response 401
 
-**Scenario 5:** The user to be update does not exist
+**Scenario 6:** The user to be update does not exist
 **Given that** the admin user give the id of a user that is not an existing user
 **when** User use the api with the route /users/admin/update/role with a patch request
 **then** I should see a response 400
 
-**Scenario 6:** The id of the new Role is missing in the parameters of the request
+**Scenario 7:** The id of the new Role is missing in the parameters of the request
 **Given that** the admin user forget the id of the new Role
 **when** User use the api with the route /users/admin/update/role with a patch request
-**then** I should see a response 400
+**then** I should see a response 400, the role must not have changed in the database
 
-**Scenario 7:** The id user to be update is missing in the parameters of the request
+**Scenario 8:** The id user to be update is missing in the parameters of the request
 **Given that** the admin user forget the id User that has to be deleted
 **when** User use the api with the route /users/admin/update/role with a patch request
-**then** I should see a response 400
+**then** I should see a response 400, the role must not have changed in the database
+
+**Scenario 9:** The password of the admin is missing
+**Given that** the admin user forget the id User that has to be deleted
+**when** User use the api with the route /users/admin/update/role with a patch request
+**then** I should see a response 400, the role must not have changed in the database
+
+**Scenario 10:** The password of the admin is not valid
+**Given that** the admin user give a wrong password in the parameters
+**when** User use the api with the route /users/admin/update/role with a patch request
+**then** I should see a response 400, the role must not have changed in the database
+
+**Scenario 11:** The id of the new role is not valid
+**Given that** the admin user give a wrong id role in the parameters
+**when** User use the api with the route /users/admin/update/role with a patch request
+**then** I should see a response 400, the role must not have changed in the database
