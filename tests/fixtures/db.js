@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const User = require('../../src/models/user')
 const Role = require('../../src/models/role')
+const Project = require('../../src/models/project.js');
 const { role_administrator, role_editor, role_invite } = require('./role')
 
 const user_admin_id = new mongoose.Types.ObjectId()
