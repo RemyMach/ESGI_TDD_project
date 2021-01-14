@@ -8,7 +8,7 @@ const { role_administrator, role_editor, role_invite } = require('../fixtures/ro
 
 beforeEach(setupDatabase);
 
-describe('Test series User routes', () => {
+describe('Test series User login logout routes', () => {
 
     describe('Test the login of a User', () => {
         it('Test the login of an existing user', async () => {
