@@ -7,11 +7,11 @@ let ErrorCount = new Counter("errors");
 export let options = {
   stages: [
       { duration: '15s', target: 10 }, // below normal load
-      { duration: '30s', target: 10 },
+      { duration: '20s', target: 10 },
       { duration: '10s', target: 20 }, // normal load
-      { duration: '30s', target: 20 },
+      { duration: '20s', target: 20 },
       { duration: '10s', target: 30 }, // around the breaking point
-      { duration: '30s', target: 30 },
+      { duration: '20s', target: 30 },
       { duration: '10s', target: 40 }, // beyond the breaking point
       { duration: '30s', target: 40 },
       { duration: '10s', target: 0 },
@@ -22,7 +22,7 @@ export let options = {
 };
 
 export default function () {
-  var url = 'http://localhost:3000/users/login';
+  var url = 'http://localhost:3001/users/login';
   var payload = JSON.stringify({
     email: 'jane@gmail.com',
     password: 'azertyuiop'
