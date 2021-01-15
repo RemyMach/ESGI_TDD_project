@@ -6,8 +6,8 @@ let ErrorCount = new Counter("errors");
 
 export let options = {
   stages: [
-      { duration: '1m', target: 50 }, // simulate ramp-up of traffic from 1 to 50 users over 1 minute.
-      { duration: '3m', target: 50 }, // stay at 50 users for 3 minutes
+      { duration: '4m', target: 50 }, // simulate ramp-up of traffic from 1 to 50 users over 1 minute.
+      { duration: '5m', target: 50 }, // stay at 50 users for 3 minutes
       { duration: '1m', target: 0 }, // ramp-down to 0 users
   ],
   thresholds: {
@@ -16,7 +16,7 @@ export let options = {
 };
 
 export default function () {
-  var url = 'http://localhost:3000/users/login';
+  var url = 'http://localhost:3001/users/login';
   var payload = JSON.stringify({
     email: 'jane@gmail.com',
     password: 'azertyuiop'
