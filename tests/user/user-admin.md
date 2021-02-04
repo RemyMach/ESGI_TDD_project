@@ -106,8 +106,8 @@
 **Title:** User update Role  
 
 **As an** admin api User,  
-**I want** to update the role of an existing user
-**so that** The admin user is going to update the roleof an existing user
+**I want** to update the role of an existing user, an editor user or an invite user
+**so that** The admin user is going to update the role of an existing user
 
 **Scenario 1:** The parameters are the good one with the good format and the route to for an invite user to editor role
 **Given that** the admin user give the id of invite user or editor user and the id of the new role
