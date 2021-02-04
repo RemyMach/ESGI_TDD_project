@@ -28,7 +28,7 @@ describe('Test series User delete account routes', () => {
                 password: user_editor.password
             }).expect(400)
             
-            // On regarde que l'utilisateur n'est plus dans la db
+            // On regarde que l'utilisateur est dans la db
             const user = await User.findById(user_invite._id)
             expect(user).not.toBeNull()
     });
@@ -40,7 +40,7 @@ describe('Test series User delete account routes', () => {
                 password: user_invite.password
             }).expect(401)
             
-            // On regarde que l'utilisateur n'est plus dans la db
+            // On regarde que l'utilisateur est dans la db
             const user = await User.findById(user_invite._id)
             expect(user).not.toBeNull()
     });
@@ -51,7 +51,7 @@ describe('Test series User delete account routes', () => {
                 password: user_invite.password
             }).expect(401)
             
-            // On regarde que l'utilisateur n'est plus dans la db
+            // On regarde que l'utilisateur est dans la db
             const user = await User.findById(user_invite._id)
             expect(user).not.toBeNull()
     });
@@ -62,7 +62,7 @@ describe('Test series User delete account routes', () => {
             .send({
             }).expect(400)
             
-            // On regarde que l'utilisateur n'est plus dans la db
+            // On regarde que l'utilisateur est dans la db
             const user = await User.findById(user_invite._id)
             expect(user).not.toBeNull()
     });

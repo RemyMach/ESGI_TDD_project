@@ -18,7 +18,7 @@
 **when** User use the api with the route /users/me with a get request
 **then** I should see a response 401
 
-**Scenario 3:** No token is provide
+**Scenario 3:** We provide no token
 **Given that** the user has not provide a token in the header of the request
 **when** User use the api with the route /users/me with a get request
 **then** I should see a response 401

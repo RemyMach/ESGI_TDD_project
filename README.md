@@ -29,6 +29,12 @@ npm run dev
 
 ## Démarrer l'environnement de test
 
+### Installer l'ensemble des dépendances du projet
+- se placer à la racine du projet
+```
+npm install
+```
+
 ### Créer un fichier config/test.env
 - se placer dans le dossier config créer dans l'environnement de dev
 - créer un fichier test.env
@@ -60,7 +66,7 @@ npm run dev
 ```
 npm run dev
 ```
-- lance le script pour tester l'app en mode dev
+- lance le script pour tester l'app en mode dev dans un autre shell
 ```
 k6 run test_charge/loadTestsScript.js
 ```

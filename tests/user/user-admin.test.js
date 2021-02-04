@@ -17,7 +17,7 @@ describe('Test series User Admin routes', () => {
             .send({
                 name: 'remy',
                 email: 'remy@example.com',
-                password: 'azertyuiopqsdfghjklm',
+                password: 'azertyuiopqsdfghjklm!',
                 age: 18,
                 id_role: role_invite._id
             }).expect(201)
@@ -27,9 +27,9 @@ describe('Test series User Admin routes', () => {
             const user = await User.findById(response.body.user._id)
             expect(user).not.toBeNull()
 
-            // on regarde que la réponse contient bien les éléments attendu
+            // on regarde que la réponse CONTIENT bien les éléments attendu
             expect(response.body).toMatchObject({
-                user: { 
+                user: {
                     name: 'remy',
                     email: 'remy@example.com',
                     age: 18
@@ -50,6 +50,7 @@ describe('Test series User Admin routes', () => {
                 age: 18,
                 id_role: role_invite._id
             }).expect(401)
+
         });
 
         it('Test the creation of a User , a parameter required is missing', async () => {
@@ -417,7 +418,7 @@ describe('Test series User Admin routes', () => {
                 password: "jesuisunchocolat"
             }).expect(400)
 
-            // On regarde que le role dans la db a bien changé
+            // On regarde que le role dans la db n'a pas changé
             const user = await User.findById(user_invite._id)
             expect(user.id_role.toString()).toBe(role_invite._id.toString())
         });
@@ -432,7 +433,7 @@ describe('Test series User Admin routes', () => {
                 password: user_admin.password
             }).expect(400)
 
-            // On regarde que le role dans la db a bien changé
+            // On regarde que le role dans la db n'a pas changé
             const user = await User.findById(user_invite._id)
             expect(user.id_role.toString()).toBe(role_invite._id.toString())
         });

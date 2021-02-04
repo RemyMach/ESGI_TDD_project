@@ -36,7 +36,7 @@ describe('Test series User list routes', () => {
                 .expect(401)
         })
 
-        test('No token is not provide', async () => {
+        test('We provide no token', async () => {
 
             const response = await request(app)
                 .get('/users/me')
